@@ -1,17 +1,20 @@
-/* Store Interest Page Styles */
+/* Store Interest Page Styles - Updated for mobile overlay success card */
 .store-interest-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  position: relative;
+  padding: 15px 5px;
 }
 
 /* Enhanced Page Header */
 .page-header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  padding: 20px 0;
+  padding: 30px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .header-content {
@@ -19,16 +22,18 @@
   margin: 0 auto;
   padding: 0 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
+  text-align: center;
 }
 
 .logo-section {
   display: flex;
   align-items: center;
   gap: 20px;
+  justify-content: center;
 }
 
 .brand-text h1 {
@@ -49,7 +54,7 @@
 }
 
 .header-info {
-  text-align: right;
+  text-align: center;
 }
 
 .header-info h2 {
@@ -73,18 +78,19 @@
   max-width: 900px;
   width: 100%;
   overflow: hidden;
-  margin: 40px auto;
+  margin: 0;
 }
 
 /* Introduction */
 .introduction {
-  padding: 50px;
+  padding: 0;
   background: #f8fafc;
 }
 
 .intro-header {
   text-align: center;
   margin-bottom: 40px;
+  padding: 50px 50px 0 50px;
 }
 
 .intro-header h3 {
@@ -104,6 +110,7 @@
 .partnership-overview {
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 50px 40px 50px;
 }
 
 .partnership-overview h4 {
@@ -181,14 +188,14 @@
 
 /* Form */
 .interest-form {
-  padding: 50px;
+  padding: 0;
   background: white;
 }
 
 .form-header {
   text-align: center;
   margin-bottom: 40px;
-  padding-bottom: 30px;
+  padding: 50px 50px 30px 50px;
   border-bottom: 2px solid #f1f5f9;
 }
 
@@ -227,12 +234,14 @@
 
 .form-group {
   margin-bottom: 25px;
+  padding: 0 50px;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  padding: 0 50px;
 }
 
 .form-group label {
@@ -283,7 +292,8 @@
 }
 
 .submit-button {
-  width: 100%;
+  width: calc(100% - 100px);
+  margin: 0 50px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
@@ -360,6 +370,101 @@
   padding: 40px;
   text-align: center;
   margin: 40px auto;
+  box-sizing: border-box;
+}
+
+/* Mobile Success Card - Full Screen */
+@media (max-width: 768px) {
+  .store-interest-container {
+    padding: 20px 10px;
+  }
+  
+  .page-header {
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .logo-section {
+    display: none;
+  }
+  
+  .header-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .header-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .header-info p {
+    margin-bottom: 20px;
+  }
+  
+  .interest-card {
+    margin: 0;
+  }
+  
+  .introduction,
+  .interest-form {
+    padding: 30px 20px;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .footer {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .success-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0 !important;
+    padding: 30px 20px;
+    border-radius: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Ensure parent container doesn't interfere */
+  .store-interest-container .success-card {
+    margin: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
 }
 
 .success-icon {
@@ -436,84 +541,94 @@
   flex-wrap: wrap;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-    padding: 0 20px;
-  }
-  
-  .header-info {
-    text-align: center;
-  }
-  
-  .brand-text h1 {
-    font-size: 2.2rem;
-  }
-  
-  .header-info h2 {
-    font-size: 1.5rem;
-  }
-  
-  .interest-card {
-    margin: 20px;
-  }
-  
-  .introduction,
-  .interest-form {
-    padding: 30px 20px;
-  }
-  
-  .benefits-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  
-  .footer {
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  .success-card {
-    padding: 30px 20px;
-    margin: 20px;
-  }
-  
-  .actions {
-    flex-direction: column;
-  }
+/* Additional Mobile Styles */
+.success-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0 !important;
+  padding: 30px 20px;
+  border-radius: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.actions {
+  flex-direction: column;
 }
 
 @media (max-width: 480px) {
+  .store-interest-container {
+    padding: 15px 5px;
+  }
+  
+  .page-header {
+    border-radius: 16px;
+    margin-bottom: 15px;
+  }
+  
   .header-content {
     padding: 0 15px;
   }
   
   .logo-section {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .brand-text h1 {
-    font-size: 1.8rem;
+    display: none;
   }
   
   .header-info h2 {
     font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  
+  .header-info p {
+    margin-bottom: 15px;
   }
   
   .interest-card {
-    margin: 15px;
+    margin: 0;
   }
   
   .introduction,
   .interest-form {
-    padding: 25px 15px;
+    padding: 0;
+  }
+  
+  .intro-header {
+    padding: 25px 15px 0 15px;
+  }
+  
+  .partnership-overview {
+    padding: 0 15px 15px 15px;
+  }
+  
+  .form-header {
+    padding: 25px 15px 15px 15px;
+  }
+  
+  .form-group {
+    padding: 0 15px;
+  }
+  
+  .form-row {
+    padding: 0 15px;
+  }
+  
+  .submit-button {
+    width: calc(100% - 30px);
+    margin: 0 15px;
   }
   
   .value-proposition {
@@ -529,6 +644,81 @@
   }
   
   .success-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0 !important;
+    border-radius: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
     padding: 25px 15px;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .success-card .success-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .success-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .success-card > p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+  
+  .submission-details {
+    padding: 20px 15px;
+    margin-bottom: 25px;
+  }
+  
+  .submission-details h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .detail-row .label {
+    min-width: auto;
+    margin-right: 0;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .detail-row .value {
+    font-size: 1rem;
+  }
+  
+  .actions {
+    margin-top: auto;
+    padding-top: 20px;
+  }
+  
+  /* Ensure parent container doesn't interfere */
+  .store-interest-container .success-card {
+    margin: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
   }
 }
