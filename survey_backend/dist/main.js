@@ -13,15 +13,15 @@ console.log('=== SURVEY BACKEND STARTUP - ' + new Date().toISOString());
 async function bootstrap() {
     console.log('Survey Backend starting...');
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    if (process.env.HELMET_ENABLED !== 'false') {
+    if (false && process.env.HELMET_ENABLED !== 'false') {
         app.use(helmet.default({
             contentSecurityPolicy: {
                 directives: {
                     defaultSrc: ["'self'"],
                     styleSrc: ["'self'", "'unsafe-inline'"],
                     scriptSrc: ["'self'"],
-                    imgSrc: ["'self'", "data:", "https:"],
-                    connectSrc: ["'self'"],
+                    imgSrc: ["'self'", "data:", "https:", "http://localhost:3002", "http://localhost:5173", "http://localhost:5174"],
+                    connectSrc: ["'self'", "http://localhost:3002", "http://localhost:5173", "http://localhost:5174"],
                     fontSrc: ["'self'"],
                     objectSrc: ["'none'"],
                     mediaSrc: ["'self'"],
@@ -59,6 +59,11 @@ async function bootstrap() {
     }
     app.useStaticAssets(uploadsDir, {
         prefix: '/uploads/',
+        setHeaders: (res, path) => {
+            res.set('Access-Control-Allow-Origin', '*');
+            res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+            res.set('Access-Control-Allow-Headers', 'Content-Type');
+        }
     });
     const allowedOrigins = process.env.CORS_ORIGIN
         ? process.env.CORS_ORIGIN.split(',')

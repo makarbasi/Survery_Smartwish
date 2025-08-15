@@ -43,11 +43,15 @@ export const submitStoreInterest = async (formData) => {
 };
 
 export const getStoreInterests = async () => {
-  return apiCall('/store-interests');
+  return apiCall('/store-interests/with-images');
 };
 
 export const getStoreInterest = async (id) => {
   return apiCall(`/store-interests/${id}`);
+};
+
+export const getStoreInterestImages = async (id) => {
+  return apiCall(`/store-interests/${id}/images`);
 };
 
 export const getStats = async () => {
@@ -97,6 +101,7 @@ export default {
   submitStoreInterest,
   getStoreInterests,
   getStoreInterest,
+  getStoreInterestImages,
   getStats,
   uploadImages,
   healthCheck,

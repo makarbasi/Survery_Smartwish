@@ -69,6 +69,19 @@ let StoreInterestsService = class StoreInterestsService {
         console.log(`Found ${transformedInterests.length} store interests`);
         return transformedInterests;
     }
+    async listInterestsWithImages() {
+        console.log('Fetching all store interests with images...');
+        const interests = await this.listInterests();
+        const interestsWithImages = await Promise.all(interests.map(async (interest) => {
+            const images = await this.getImagesByInterestId(interest.id);
+            return {
+                ...interest,
+                images
+            };
+        }));
+        console.log(`Fetched ${interestsWithImages.length} interests with images`);
+        return interestsWithImages;
+    }
     async getInterestById(id) {
         console.log('Fetching store interest by ID:', id);
         const { data: interest, error } = await this.supabase
@@ -119,6 +132,27 @@ let StoreInterestsService = class StoreInterestsService {
             originalName: image.original_name,
             createdAt: image.created_at
         };
+    }
+    async getImagesByInterestId(interestId) {
+        console.log('Fetching images for store interest:', interestId);
+        const { data: images, error } = await this.supabase
+            .from('sw_store_interest_images')
+            .select('id, store_interest_id, image_url, original_name, created_at')
+            .eq('store_interest_id', interestId)
+            .order('created_at', { ascending: false });
+        if (error) {
+            console.error('Error fetching images:', error);
+            throw new Error(`Failed to fetch images: ${error.message}`);
+        }
+        const transformedImages = (images || []).map(image => ({
+            id: image.id,
+            storeInterestId: image.store_interest_id,
+            imageUrl: image.image_url,
+            originalName: image.original_name,
+            createdAt: image.created_at
+        }));
+        console.log(`Found ${transformedImages.length} images for interest ${interestId}`);
+        return transformedImages;
     }
     async getStats() {
         try {

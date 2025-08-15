@@ -28,8 +28,12 @@ export declare class StoreInterestsService {
     private get supabase();
     createInterest(data: CreateInterestDto): Promise<StoreInterest>;
     listInterests(): Promise<StoreInterest[]>;
+    listInterestsWithImages(): Promise<(StoreInterest & {
+        images: StoreInterestImage[];
+    })[]>;
     getInterestById(id: string): Promise<StoreInterest>;
     addImage(interestId: string, imageUrl: string, originalName?: string): Promise<StoreInterestImage>;
+    getImagesByInterestId(interestId: string): Promise<StoreInterestImage[]>;
     getStats(): Promise<{
         totalInterests: any;
         totalImages: any;

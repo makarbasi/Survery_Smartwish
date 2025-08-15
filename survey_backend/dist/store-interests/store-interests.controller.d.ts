@@ -9,6 +9,7 @@ interface StoreInterest {
     letterText?: string;
     createdAt: string;
     updatedAt: string;
+    images?: StoreInterestImage[];
 }
 interface StoreInterestImage {
     id: string;
@@ -28,12 +29,14 @@ export declare class StoreInterestsController {
         contactPhone?: string;
     }): Promise<StoreInterest>;
     list(): Promise<StoreInterest[]>;
+    listWithImages(): Promise<StoreInterest[]>;
     getStats(): Promise<{
         totalInterests: any;
         totalImages: any;
         recentSubmissions: any;
     }>;
     getOne(id: string): Promise<StoreInterest>;
+    getImages(id: string): Promise<StoreInterestImage[]>;
     uploadImages(id: string, files: Express.Multer.File[]): Promise<{
         images: StoreInterestImage[];
     }>;

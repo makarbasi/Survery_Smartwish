@@ -16,16 +16,16 @@ async function bootstrap() {
   console.log('Survey Backend starting...');
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Security middleware
-  if (process.env.HELMET_ENABLED !== 'false') {
+  // Security middleware - temporarily disabled to fix image loading
+  if (false && process.env.HELMET_ENABLED !== 'false') {
     app.use(helmet.default({
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
           styleSrc: ["'self'", "'unsafe-inline'"],
           scriptSrc: ["'self'"],
-          imgSrc: ["'self'", "data:", "https:"],
-          connectSrc: ["'self'"],
+          imgSrc: ["'self'", "data:", "https:", "http://localhost:3002", "http://localhost:5173", "http://localhost:5174"],
+          connectSrc: ["'self'", "http://localhost:3002", "http://localhost:5173", "http://localhost:5174"],
           fontSrc: ["'self'"],
           objectSrc: ["'none'"],
           mediaSrc: ["'self'"],
@@ -68,9 +68,14 @@ async function bootstrap() {
     fs.mkdirSync(storeImagesDir, { recursive: true });
   }
 
-  // Serve static files
+  // Serve static files with CORS headers
   app.useStaticAssets(uploadsDir, {
     prefix: '/uploads/',
+    setHeaders: (res, path) => {
+      res.set('Access-Control-Allow-Origin', '*');
+      res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+      res.set('Access-Control-Allow-Headers', 'Content-Type');
+    }
   });
 
   // CORS configuration

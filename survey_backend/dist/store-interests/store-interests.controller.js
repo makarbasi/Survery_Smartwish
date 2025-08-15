@@ -81,6 +81,10 @@ This letter of interest was submitted through the SmartWish Partnership Portal o
         console.log('Fetching all store interests');
         return this.service.listInterests();
     }
+    async listWithImages() {
+        console.log('Fetching all store interests with images');
+        return this.service.listInterestsWithImages();
+    }
     async getStats() {
         console.log('Fetching store interests statistics');
         return this.service.getStats();
@@ -89,6 +93,10 @@ This letter of interest was submitted through the SmartWish Partnership Portal o
         console.log('Fetching store interest:', id);
         return this.service.getInterestById(id);
     }
+    async getImages(id) {
+        console.log('Fetching images for store interest:', id);
+        return this.service.getImagesByInterestId(id);
+    }
     async uploadImages(id, files) {
         console.log(`Uploading ${files.length} images for store interest:`, id);
         if (!files || files.length === 0) {
@@ -96,7 +104,9 @@ This letter of interest was submitted through the SmartWish Partnership Portal o
         }
         const results = [];
         for (const file of files) {
-            const publicUrl = `/uploads/store-interests/${path.basename(file.path)}`;
+            const filename = file.filename || path.basename(file.path || '');
+            const publicUrl = `/uploads/store-interests/${filename}`;
+            console.log(`Saving image: ${filename} with URL: ${publicUrl}`);
             const saved = await this.service.addImage(id, publicUrl, file.originalname);
             results.push(saved);
         }
@@ -119,6 +129,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StoreInterestsController.prototype, "list", null);
 __decorate([
+    (0, common_1.Get)('with-images'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], StoreInterestsController.prototype, "listWithImages", null);
+__decorate([
     (0, common_1.Get)('stats'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -131,6 +147,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], StoreInterestsController.prototype, "getOne", null);
+__decorate([
+    (0, common_1.Get)(':id/images'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], StoreInterestsController.prototype, "getImages", null);
 __decorate([
     (0, common_1.Post)(':id/images'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('images', 10, {

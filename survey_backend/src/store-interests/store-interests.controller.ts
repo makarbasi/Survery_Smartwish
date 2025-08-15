@@ -25,6 +25,7 @@ interface StoreInterest {
   letterText?: string;
   createdAt: string;
   updatedAt: string;
+  images?: StoreInterestImage[];
 }
 
 interface StoreInterestImage {
@@ -115,6 +116,12 @@ This letter of interest was submitted through the SmartWish Partnership Portal o
     return this.service.listInterests();
   }
 
+  @Get('with-images')
+  async listWithImages(): Promise<StoreInterest[]> {
+    console.log('Fetching all store interests with images');
+    return this.service.listInterestsWithImages();
+  }
+
   @Get('stats')
   async getStats() {
     console.log('Fetching store interests statistics');
@@ -125,6 +132,12 @@ This letter of interest was submitted through the SmartWish Partnership Portal o
   async getOne(@Param('id') id: string): Promise<StoreInterest> {
     console.log('Fetching store interest:', id);
     return this.service.getInterestById(id);
+  }
+
+  @Get(':id/images')
+  async getImages(@Param('id') id: string): Promise<StoreInterestImage[]> {
+    console.log('Fetching images for store interest:', id);
+    return this.service.getImagesByInterestId(id);
   }
 
   @Post(':id/images')
@@ -162,7 +175,12 @@ This letter of interest was submitted through the SmartWish Partnership Portal o
 
     const results = [] as StoreInterestImage[];
     for (const file of files) {
-      const publicUrl = `/uploads/store-interests/${path.basename(file.path)}`;
+      // Use filename instead of path for newer multer versions
+      const filename = file.filename || path.basename(file.path || '');
+      const publicUrl = `/uploads/store-interests/${filename}`;
+      
+      console.log(`Saving image: ${filename} with URL: ${publicUrl}`);
+      
       const saved = await this.service.addImage(id, publicUrl, file.originalname);
       results.push(saved);
     }
