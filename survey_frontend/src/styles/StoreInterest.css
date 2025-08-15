@@ -4,7 +4,7 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   position: relative;
-  padding: 15px 5px;
+  padding: 20px;
 }
 
 /* Enhanced Page Header */
@@ -75,10 +75,10 @@
   background: white;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  max-width: 900px;
+  max-width: calc(100% - 40px);
   width: 100%;
   overflow: hidden;
-  margin: 0;
+  margin: 0 auto;
 }
 
 /* Introduction */
@@ -409,7 +409,8 @@
   }
   
   .interest-card {
-    margin: 0;
+    max-width: calc(100% - 20px);
+    margin: 0 auto;
   }
   
   .introduction,
@@ -598,7 +599,8 @@
   }
   
   .interest-card {
-    margin: 0;
+    max-width: calc(100% - 10px);
+    margin: 0 auto;
   }
   
   .introduction,
