@@ -40,10 +40,10 @@ const StoreInterest = () => {
       <div className="store-interest-container">
         <div className="success-card">
           <div className="success-icon">✓</div>
-          <h2>Thank You!</h2>
+          <h2>You're in the Queue! 🎉</h2>
           <p>
-            Your interest in SmartWish has been successfully recorded. Our team will 
-            review your submission and contact you soon to discuss partnership opportunities.
+            Great! You've successfully joined the SmartWish demo queue. We'll reach out when it's your turn 
+            to schedule a personalized demo. No pressure - this is just to show you how SmartWish could work in your store!
           </p>
           
           <div className="submission-details">
@@ -93,7 +93,7 @@ const StoreInterest = () => {
               }} 
               className="btn btn-primary"
             >
-              Submit Another
+              Join Another Queue
             </button>
           </div>
         </div>
@@ -113,8 +113,8 @@ const StoreInterest = () => {
             </div>
           </div>
           <div className="header-info">
-            <h2>Store Partnership Interest Form</h2>
-            <p>Join our exclusive network of retail partners</p>
+            <h2>SmartWish Demo Queue</h2>
+            <p>Get in line to see SmartWish in action!</p>
           </div>
         </div>
       </div>
@@ -123,8 +123,8 @@ const StoreInterest = () => {
         {/* Introduction */}
         <div className="introduction">
           <div className="intro-header">
-            <h3>Letter of Interest for Retail Partnership</h3>
-            <p className="intro-subtitle">Express your interest in becoming an authorized SmartWish retailer</p>
+            <h3>Want to See SmartWish in Action? 🚀</h3>
+            <p className="intro-subtitle">Join the queue for a personalized demo - no commitment required!</p>
           </div>
           
           <div className="partnership-overview">
@@ -174,8 +174,11 @@ const StoreInterest = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="interest-form">
           <div className="form-header">
-            <h3>Submit Your Letter of Interest</h3>
-            <p>Please provide the following information to initiate the partnership evaluation process. We will review your submission and contact you within 3-5 business days.</p>
+            <h3>Get in Line for a SmartWish Demo! 🎯</h3>
+            <p>Join the queue to see SmartWish in action! This is just to express interest - no commitment required. We'll reach out to schedule a personalized demo when it's your turn.</p>
+            <div className="no-obligation-notice">
+              <strong>💡 No Pressure, No Obligation!</strong> You're just getting in line to see how SmartWish could work in your store.
+            </div>
           </div>
           
           <div className="form-group">
@@ -231,7 +234,7 @@ const StoreInterest = () => {
                 onChange={handleChange}
                 placeholder="your@email.com"
               />
-              <small className="field-help">We'll use this for faster communication regarding your partnership application</small>
+              <small className="field-help">We'll use this to reach out when it's your turn for a demo</small>
             </div>
 
             <div className="form-group">
@@ -247,7 +250,7 @@ const StoreInterest = () => {
                 onChange={handleChange}
                 placeholder="+1 (555) 123-4567"
               />
-              <small className="field-help">For urgent partnership discussions and support</small>
+              <small className="field-help">For scheduling your demo and answering questions</small>
             </div>
           </div>
 
@@ -257,10 +260,10 @@ const StoreInterest = () => {
             {submitting ? (
               <>
                 <span className="spinner"></span>
-                Submitting...
+                Getting in line...
               </>
             ) : (
-              'Submit Interest in SmartWish Partnership'
+              'Join the Demo Queue! 🚀'
             )}
           </button>
         </form>
@@ -269,9 +272,8 @@ const StoreInterest = () => {
         <div className="footer">
           <p>
             <strong>Questions?</strong> Contact us at{' '}
-            <a href="mailto:partnerships@smartwish.com">partnerships@smartwish.com</a>
+            <a href="mailto:info@smartwish.us">info@smartwish.us</a>
           </p>
-          <Link to="/" className="back-link">← Back to Home</Link>
         </div>
       </div>
     </div>

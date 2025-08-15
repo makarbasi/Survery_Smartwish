@@ -26,53 +26,41 @@ let StoreInterestsController = class StoreInterestsController {
     async submitInterest(body) {
         console.log('Received store interest submission:', body.storeName);
         if (!body.storeName || !body.storeAddress || !body.contactName) {
-            throw new common_1.BadRequestException('Store name, address, and contact name are required');
+            throw new common_1.BadRequestException('Please fill in the store name, address, and contact person fields');
         }
         const currentDate = new Date().toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
         });
-        const letterText = `LETTER OF INTEREST
-Store Partnership Program
+        const letterText = `Hi there! 👋
 
-Date: ${currentDate}
+We'd love to hear from you about SmartWish!
 
-SmartWish Partnership Team
-partnerships@smartwish.com
+SmartWish is an AI-powered greeting card kiosk that helps customers create personalized cards right in your store. It's a fun way to boost sales and give your customers something unique.
 
-RE: Expression of Interest for Retail Partnership
+We're reaching out because we think your store might be a great fit for this technology.
 
-Dear SmartWish Partnership Team,
+What happens next?
+• We'll get in touch to tell you more about SmartWish
+• Show you how it works
+• Discuss how it could fit in your store
+• Talk about potential benefits for your business
 
-I am writing on behalf of ${body.storeName}, located at ${body.storeAddress}, to formally express our strong interest in becoming an authorized retail partner for SmartWish's innovative digital greeting card technology platform.
-
-After reviewing your partnership program, we believe that SmartWish's cutting-edge digital card creation technology would be an excellent addition to our retail offerings and would provide significant value to our customer base.
+No pressure - this is just to see if you're interested in learning more!
 
 Store Information:
-• Business Name: ${body.storeName}
-• Location: ${body.storeAddress}
-• Primary Contact: ${body.contactName}${body.contactEmail ? `\n• Email: ${body.contactEmail}` : ''}${body.contactPhone ? `\n• Phone: ${body.contactPhone}` : ''}
+• Store Name: ${body.storeName}
+• Address: ${body.storeAddress}
+• Contact Person: ${body.contactName}${body.contactEmail ? `\n• Email: ${body.contactEmail}` : ''}${body.contactPhone ? `\n• Phone: ${body.contactPhone}` : ''}
 
-We are particularly interested in:
-- Exploring exclusive territory rights for our market area
-- Understanding the revenue-sharing structure and profit margins
-- Learning about the implementation timeline and setup requirements
-- Receiving comprehensive training and marketing support materials
+Thanks for your time! We'll be in touch soon.
 
-Our establishment has a proven track record of successfully introducing innovative products to our market, and we are confident that we can effectively represent the SmartWish brand while driving meaningful sales growth.
-
-We would welcome the opportunity to discuss this partnership in greater detail at your earliest convenience. Please let us know the next steps in your partnership evaluation process.
-
-Thank you for considering our application. We look forward to the possibility of joining the SmartWish retail network and contributing to your continued success.
-
-Sincerely,
-
-${body.contactName}
-${body.storeName}
+Best regards,
+The SmartWish Team
 
 ---
-This letter of interest was submitted through the SmartWish Partnership Portal on ${currentDate}.`;
+Submitted on ${currentDate}`;
         const created = await this.service.createInterest({ ...body, letterText });
         console.log('Store interest submitted successfully:', created.id);
         return created;
