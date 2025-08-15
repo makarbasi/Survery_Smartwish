@@ -1,0 +1,517 @@
+/* Store Interest Page Styles */
+.store-interest-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Enhanced Page Header */
+.page-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand-text h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: #718096;
+  margin: 5px 0 0 0;
+  font-weight: 500;
+}
+
+.header-info {
+  text-align: right;
+}
+
+.header-info h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #2d3748;
+}
+
+.header-info p {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin: 0;
+  font-weight: 500;
+}
+
+.interest-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  width: 100%;
+  overflow: hidden;
+  margin: 40px auto;
+}
+
+/* Introduction */
+.introduction {
+  padding: 50px;
+  background: #f8fafc;
+}
+
+.intro-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro-header h3 {
+  font-size: 2.2rem;
+  color: #2d3748;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+.intro-subtitle {
+  font-size: 1.2rem;
+  color: #718096;
+  margin: 0;
+  font-weight: 500;
+}
+
+.partnership-overview {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.partnership-overview h4 {
+  font-size: 1.6rem;
+  color: #2d3748;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+
+.partnership-overview > p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #4a5568;
+  margin: 0 0 40px 0;
+}
+
+.value-proposition {
+  background: white;
+  border-radius: 16px;
+  padding: 35px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.value-proposition h5 {
+  font-size: 1.4rem;
+  color: #2d3748;
+  margin: 0 0 25px 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.benefit-item strong {
+  font-size: 1.1rem;
+  color: #2d3748;
+  margin: 0 0 6px 0;
+  display: block;
+  font-weight: 600;
+}
+
+.benefit-item p {
+  font-size: 0.95rem;
+  color: #718096;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Form */
+.interest-form {
+  padding: 50px;
+  background: white;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.form-header h3 {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+}
+
+.form-header p {
+  color: #718096;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.optional-indicator {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.field-help {
+  display: block;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0aec0;
+}
+
+.submit-button {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Footer */
+.footer {
+  background: #f8fafc;
+  padding: 25px 40px;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer p {
+  margin: 0;
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+.footer a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Success State */
+.success-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+  margin: 40px auto;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: white;
+  margin: 0 auto 30px;
+  font-weight: bold;
+}
+
+.success-card h2 {
+  font-size: 2rem;
+  color: #2d3748;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+
+.success-card > p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin: 0 0 30px 0;
+}
+
+.submission-details {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: left;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+}
+
+.submission-details h3 {
+  font-size: 1.2rem;
+  color: #2d3748;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-row .label {
+  font-weight: 600;
+  color: #4a5568;
+  min-width: 100px;
+  margin-right: 15px;
+}
+
+.detail-row .value {
+  color: #2d3748;
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .header-info {
+    text-align: center;
+  }
+  
+  .brand-text h1 {
+    font-size: 2.2rem;
+  }
+  
+  .header-info h2 {
+    font-size: 1.5rem;
+  }
+  
+  .interest-card {
+    margin: 20px;
+  }
+  
+  .introduction,
+  .interest-form {
+    padding: 30px 20px;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .footer {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .success-card {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0 15px;
+  }
+  
+  .logo-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .brand-text h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header-info h2 {
+    font-size: 1.3rem;
+  }
+  
+  .interest-card {
+    margin: 15px;
+  }
+  
+  .introduction,
+  .interest-form {
+    padding: 25px 15px;
+  }
+  
+  .value-proposition {
+    padding: 25px 20px;
+  }
+  
+  .benefits-grid {
+    gap: 15px;
+  }
+  
+  .benefit-item {
+    padding: 15px;
+  }
+  
+  .success-card {
+    padding: 25px 15px;
+  }
+}
