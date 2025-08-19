@@ -1,12 +1,11 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StoreInterestsModule } from './store-interests/store-interests.module';
 import appConfig from './config/app.config';
 import { getSupabaseClient } from './config/supabase.config';
+import { SupabaseStorageService } from './services/supabase-storage.service';
 
 @Module({
   imports: [
@@ -17,17 +16,11 @@ import { getSupabaseClient } from './config/supabase.config';
       load: [appConfig],
     }),
 
-    // Static files
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../uploads'),
-      serveRoot: '/uploads',
-    }),
-
     // Feature modules
     StoreInterestsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SupabaseStorageService],
 })
 export class AppModule implements OnModuleInit {
   constructor() {
@@ -45,6 +38,11 @@ export class AppModule implements OnModuleInit {
       // Test Supabase connection
       await this.testSupabaseConnection();
       console.log('✅ Supabase connection test successful');
+      
+      // Initialize storage bucket
+      const storageService = new SupabaseStorageService();
+      await storageService.createBucketIfNotExists();
+      console.log('✅ Supabase storage bucket initialized');
     } catch (error) {
       console.error('❌ Supabase connection test failed:', error.message);
       console.error('Please check your Supabase URL and API keys');

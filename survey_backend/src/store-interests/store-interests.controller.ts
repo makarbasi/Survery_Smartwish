@@ -10,9 +10,8 @@ import {
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import * as multer from 'multer';
-import * as fs from 'fs';
-import * as path from 'path';
 import { StoreInterestsService } from './store-interests.service';
+import { SupabaseStorageService } from '../services/supabase-storage.service';
 
 // Import types from the service
 interface StoreInterest {
@@ -38,7 +37,10 @@ interface StoreInterestImage {
 
 @Controller('store-interests')
 export class StoreInterestsController {
-  constructor(private readonly service: StoreInterestsService) {}
+  constructor(
+    private readonly service: StoreInterestsService,
+    private readonly storageService: SupabaseStorageService,
+  ) {}
 
   @Post()
   async submitInterest(
@@ -131,19 +133,7 @@ Submitted on ${currentDate}`;
   @Post(':id/images')
   @UseInterceptors(
     FilesInterceptor('images', 10, {
-      storage: multer.diskStorage({
-        destination: (req, file, cb) => {
-          const uploadDir = path.join(process.cwd(), 'uploads', 'store-interests');
-          if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir, { recursive: true });
-          }
-          cb(null, uploadDir);
-        },
-        filename: (req, file, cb) => {
-          const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-          cb(null, `store_${req.params.id}_${uniqueSuffix}_${file.originalname}`);
-        },
-      }),
+      storage: multer.memoryStorage(), // Store in memory temporarily
       limits: { fileSize: 10 * 1024 * 1024 },
       fileFilter: (req, file, cb) => {
         if (file.mimetype.startsWith('image/')) return cb(null, true);
@@ -161,32 +151,28 @@ Submitted on ${currentDate}`;
       throw new BadRequestException('No files uploaded');
     }
 
+    // Ensure storage bucket exists
+    await this.storageService.createBucketIfNotExists();
+
     const results = [] as StoreInterestImage[];
     for (const file of files) {
-      // Use filename instead of path for newer multer versions
-      const filename = file.filename || path.basename(file.path || '');
-      
-      // Generate full URL - detect Render deployment automatically
-      let baseUrl = 'http://localhost:3002'; // Default for development
-      
-      // Check if we're on Render (they set RENDER=true)
-      if (process.env.RENDER === 'true' || process.env.NODE_ENV === 'production') {
-        baseUrl = process.env.BACKEND_BASE_URL || 'https://smartwish-survey-backend.onrender.com';
-        console.log('🔧 Production/Render mode - using base URL:', baseUrl);
-      } else {
-        console.log('🔧 Development mode - using localhost');
+      try {
+        // Upload to Supabase Storage
+        const { url: publicUrl } = await this.storageService.uploadImage(file, id);
+        
+        console.log(`✅ Image uploaded to Supabase: ${file.originalname}`);
+        console.log(`🔗 Public URL: ${publicUrl}`);
+        
+        // Save image reference to database
+        const saved = await this.service.addImage(id, publicUrl, file.originalname);
+        results.push(saved);
+      } catch (error) {
+        console.error(`❌ Failed to upload image ${file.originalname}:`, error);
+        throw new BadRequestException(`Failed to upload image: ${error.message}`);
       }
-      
-      const publicUrl = `${baseUrl}/uploads/store-interests/${filename}`;
-      
-      console.log(`Saving image: ${filename} with URL: ${publicUrl}`);
-      console.log(`Environment: NODE_ENV=${process.env.NODE_ENV}, BACKEND_BASE_URL=${process.env.BACKEND_BASE_URL}`);
-      
-      const saved = await this.service.addImage(id, publicUrl, file.originalname);
-      results.push(saved);
     }
     
-    console.log(`Successfully uploaded ${results.length} images`);
+    console.log(`✅ Successfully uploaded ${results.length} images to Supabase`);
     return { images: results };
   }
 }

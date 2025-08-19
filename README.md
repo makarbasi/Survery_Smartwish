@@ -52,7 +52,7 @@ The frontend will run on `http://localhost:5173`
 ### Backend (NestJS)
 - RESTful API for store interest submissions
 - PostgreSQL database integration with Supabase
-- File upload handling for store images
+- **Cloud Storage**: Images uploaded to Supabase Storage for global access
 - Automatic letter generation
 - Admin dashboard API endpoints
 - CORS configuration for frontend integration

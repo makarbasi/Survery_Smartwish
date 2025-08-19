@@ -5,8 +5,6 @@ dotenv.config();
 
 import * as bodyParser from 'body-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join, extname } from 'path';
-import * as fs from 'fs';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 
@@ -65,42 +63,8 @@ async function bootstrap() {
 
   app.use(globalRateLimit);
 
-  // Create uploads directory
-  const uploadsDir = join(process.cwd(), 'uploads');
-  const storeImagesDir = join(uploadsDir, 'store-interests');
-
-  if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-  }
-  if (!fs.existsSync(storeImagesDir)) {
-    fs.mkdirSync(storeImagesDir, { recursive: true });
-  }
-
-  // Serve static files with CORS headers
-  app.useStaticAssets(uploadsDir, {
-    prefix: '/uploads/',
-    setHeaders: (res, path) => {
-      res.set('Access-Control-Allow-Origin', '*');
-      res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
-      res.set('Access-Control-Allow-Headers', 'Content-Type');
-      res.set('Cache-Control', 'public, max-age=31536000'); // Cache images for 1 year
-      res.set('Content-Type', getContentType(path)); // Set proper content type
-    }
-  });
-
-  // Helper function to determine content type
-  function getContentType(filePath: string): string {
-    const ext = extname(filePath).toLowerCase();
-    const contentTypes: { [key: string]: string } = {
-      '.jpg': 'image/jpeg',
-      '.jpeg': 'image/jpeg',
-      '.png': 'image/png',
-      '.gif': 'image/gif',
-      '.webp': 'image/webp',
-      '.svg': 'image/svg+xml'
-    };
-    return contentTypes[ext] || 'application/octet-stream';
-  }
+  // Note: We're no longer serving local files since we're using Supabase Storage
+  console.log('📁 Using Supabase Storage for image uploads - no local uploads directory needed');
 
   // CORS configuration
   const allowedOrigins = process.env.CORS_ORIGIN 
