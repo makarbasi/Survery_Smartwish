@@ -98,7 +98,6 @@ const StoreInterest = () => {
           </div>
 
           <div className="actions">
-            <Link to="/" className="btn btn-secondary">← Back to Home</Link>
             <button 
               onClick={() => {
                 setSubmitted(null);

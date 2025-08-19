@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import App from './App.jsx';
 import StoreInterest from './pages/StoreInterest.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
