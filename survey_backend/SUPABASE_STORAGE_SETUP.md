@@ -17,15 +17,26 @@ This application now uses Supabase Storage instead of local file storage for ima
 - No dependency on local server storage
 - Images persist across deployments
 
-## Required Environment Variables
+## Prerequisites
 
-Make sure these are set in your Render backend service:
+1. **Enable Storage in Supabase**: Go to your Supabase project dashboard → Storage → Enable Storage
+2. **Set Environment Variables** in your Render backend service:
 
 ```bash
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=your_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ```
+
+## Manual Storage Setup (Recommended)
+
+For better control and to avoid permission issues, run these SQL commands in your Supabase SQL Editor:
+
+1. **Open Supabase Dashboard** → SQL Editor
+2. **Copy and paste** the contents of `SETUP_STORAGE.sql`
+3. **Run the commands** to create the storage bucket and policies
+
+This ensures the storage is properly configured with the right permissions.
 
 ## Storage Bucket
 

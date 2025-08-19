@@ -70,6 +70,7 @@ export class SupabaseStorageService {
       if (listError) {
         console.error('Error listing buckets:', listError);
         console.log('⚠️  Bucket creation will be skipped due to listing error');
+        console.log('💡 You may need to run the SQL setup commands in Supabase first');
         return;
       }
 
@@ -78,26 +79,34 @@ export class SupabaseStorageService {
       if (!bucketExists) {
         console.log(`🔄 Creating Supabase storage bucket: ${this.bucketName}`);
         
-        // Create bucket with public access
-        const { error: createError } = await supabase.storage.createBucket(this.bucketName, {
-          public: true,
-          allowedMimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'],
-          fileSizeLimit: 10 * 1024 * 1024, // 10MB
-        });
+        try {
+          // Create bucket with public access
+          const { error: createError } = await supabase.storage.createBucket(this.bucketName, {
+            public: true,
+            allowedMimeTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'],
+            fileSizeLimit: 10 * 1024 * 1024, // 10MB
+          });
 
-        if (createError) {
+          if (createError) {
+            console.error('❌ Error creating bucket:', createError);
+            console.log('💡 You may need to run the SQL setup commands in Supabase first');
+            console.log('💡 Check SETUP_STORAGE.sql for manual setup instructions');
+            return;
+          }
+
+          console.log(`✅ Created Supabase storage bucket: ${this.bucketName}`);
+        } catch (createError) {
           console.error('❌ Error creating bucket:', createError);
-          console.log('⚠️  Bucket creation failed, but app will continue');
-          return;
+          console.log('💡 You may need to run the SQL setup commands in Supabase first');
+          console.log('💡 Check SETUP_STORAGE.sql for manual setup instructions');
         }
-
-        console.log(`✅ Created Supabase storage bucket: ${this.bucketName}`);
       } else {
         console.log(`✅ Supabase storage bucket already exists: ${this.bucketName}`);
       }
     } catch (error) {
       console.error('❌ Unexpected error in bucket creation:', error);
-      console.log('⚠️  Bucket creation failed, but app will continue');
+      console.log('💡 You may need to run the SQL setup commands in Supabase first');
+      console.log('💡 Check SETUP_STORAGE.sql for manual setup instructions');
     }
   }
 }
