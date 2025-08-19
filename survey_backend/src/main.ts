@@ -5,7 +5,7 @@ dotenv.config();
 
 import * as bodyParser from 'body-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
+import { join, extname } from 'path';
 import * as fs from 'fs';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
@@ -82,7 +82,7 @@ async function bootstrap() {
 
   // Helper function to determine content type
   function getContentType(filePath: string): string {
-    const ext = path.extname(filePath).toLowerCase();
+    const ext = extname(filePath).toLowerCase();
     const contentTypes: { [key: string]: string } = {
       '.jpg': 'image/jpeg',
       '.jpeg': 'image/jpeg',
