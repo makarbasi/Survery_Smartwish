@@ -2,7 +2,7 @@ services:
   - type: web
     name: smartwish-survey-backend
     env: node
-    plan: starter
+    plan: hobby
     buildCommand: npm install && npm run build
     startCommand: npm run start:prod
     envVars:

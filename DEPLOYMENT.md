@@ -140,7 +140,7 @@ Ensure your Supabase database has the required tables:
 
 ### Scaling
 
-- **Starter plan**: $7/month, good for development/testing
+- **Hobby plan**: $7/month, good for development/testing
 - **Standard plan**: $25/month, suitable for production workloads
 - **Pro plan**: $50/month, high-performance applications
 - **Auto-scaling**: Available on paid plans
@@ -163,7 +163,7 @@ If you encounter issues:
 
 ## Cost Optimization
 
-- **Starter plan**: $7/month per web service (includes 750 hours)
+- **Hobby plan**: $7/month per web service (includes 750 hours)
 - **Static sites**: $0/month (unlimited)
 - **Database**: Consider using Supabase free tier or Render's PostgreSQL
 - **Monitoring**: Use Render's built-in monitoring tools

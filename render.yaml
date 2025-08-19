@@ -3,7 +3,7 @@ services:
   - type: web
     name: smartwish-survey-backend
     env: node
-    plan: starter
+    plan: hobby
     rootDir: survey_backend
     buildCommand: npm install && npm run build
     startCommand: npm run start:prod
@@ -46,7 +46,7 @@ services:
   - type: web
     name: smartwish-survey-frontend
     env: static
-    plan: starter
+    plan: hobby
     rootDir: survey_frontend
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
