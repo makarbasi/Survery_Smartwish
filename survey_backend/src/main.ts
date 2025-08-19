@@ -75,8 +75,24 @@ async function bootstrap() {
       res.set('Access-Control-Allow-Origin', '*');
       res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
       res.set('Access-Control-Allow-Headers', 'Content-Type');
+      res.set('Cache-Control', 'public, max-age=31536000'); // Cache images for 1 year
+      res.set('Content-Type', getContentType(path)); // Set proper content type
     }
   });
+
+  // Helper function to determine content type
+  function getContentType(filePath: string): string {
+    const ext = path.extname(filePath).toLowerCase();
+    const contentTypes: { [key: string]: string } = {
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.png': 'image/png',
+      '.gif': 'image/gif',
+      '.webp': 'image/webp',
+      '.svg': 'image/svg+xml'
+    };
+    return contentTypes[ext] || 'application/octet-stream';
+  }
 
   // CORS configuration
   const allowedOrigins = process.env.CORS_ORIGIN 

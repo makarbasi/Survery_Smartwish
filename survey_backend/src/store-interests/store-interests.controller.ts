@@ -165,7 +165,13 @@ Submitted on ${currentDate}`;
     for (const file of files) {
       // Use filename instead of path for newer multer versions
       const filename = file.filename || path.basename(file.path || '');
-      const publicUrl = `/uploads/store-interests/${filename}`;
+      
+      // Generate full URL for production
+      const baseUrl = process.env.NODE_ENV === 'production' 
+        ? process.env.BACKEND_BASE_URL || 'https://smartwish-survey-backend.onrender.com'
+        : 'http://localhost:3002';
+      
+      const publicUrl = `${baseUrl}/uploads/store-interests/${filename}`;
       
       console.log(`Saving image: ${filename} with URL: ${publicUrl}`);
       
