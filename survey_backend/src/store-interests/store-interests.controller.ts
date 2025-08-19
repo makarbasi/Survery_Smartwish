@@ -166,14 +166,21 @@ Submitted on ${currentDate}`;
       // Use filename instead of path for newer multer versions
       const filename = file.filename || path.basename(file.path || '');
       
-      // Generate full URL for production
-      const baseUrl = process.env.NODE_ENV === 'production' 
-        ? process.env.BACKEND_BASE_URL || 'https://smartwish-survey-backend.onrender.com'
-        : 'http://localhost:3002';
+      // Generate full URL - detect Render deployment automatically
+      let baseUrl = 'http://localhost:3002'; // Default for development
+      
+      // Check if we're on Render (they set RENDER=true)
+      if (process.env.RENDER === 'true' || process.env.NODE_ENV === 'production') {
+        baseUrl = process.env.BACKEND_BASE_URL || 'https://smartwish-survey-backend.onrender.com';
+        console.log('🔧 Production/Render mode - using base URL:', baseUrl);
+      } else {
+        console.log('🔧 Development mode - using localhost');
+      }
       
       const publicUrl = `${baseUrl}/uploads/store-interests/${filename}`;
       
       console.log(`Saving image: ${filename} with URL: ${publicUrl}`);
+      console.log(`Environment: NODE_ENV=${process.env.NODE_ENV}, BACKEND_BASE_URL=${process.env.BACKEND_BASE_URL}`);
       
       const saved = await this.service.addImage(id, publicUrl, file.originalname);
       results.push(saved);

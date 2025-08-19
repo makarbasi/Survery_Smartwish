@@ -14,6 +14,14 @@ console.log('=== SURVEY BACKEND STARTUP - ' + new Date().toISOString());
 
 async function bootstrap() {
   console.log('Survey Backend starting...');
+  
+  // Log environment variables for debugging
+  console.log('🔧 Environment Variables:');
+  console.log('  NODE_ENV:', process.env.NODE_ENV);
+  console.log('  BACKEND_BASE_URL:', process.env.BACKEND_BASE_URL);
+  console.log('  PORT:', process.env.PORT);
+  console.log('  CORS_ORIGIN:', process.env.CORS_ORIGIN);
+  
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   // Security middleware - temporarily disabled to fix image loading
