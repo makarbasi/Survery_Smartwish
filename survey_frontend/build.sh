@@ -3,6 +3,6 @@ echo "Installing dependencies..."
 npm ci
 
 echo "Building with Vite..."
-node ./node_modules/.bin/vite build
+npx --yes vite build
 
 echo "Build completed!"
