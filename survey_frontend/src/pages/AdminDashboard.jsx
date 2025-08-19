@@ -159,16 +159,30 @@ const AdminDashboard = () => {
                   
                   {interest.images && interest.images.length > 0 && (
                     <div className="images-grid">
-                      {interest.images.map((img) => (
-                        <div key={img.id} className="image-item">
-                          <img
-                            src={`http://localhost:3002${img.imageUrl}`}
-                            alt={img.originalName || 'Store image'}
-                            className="store-image"
-                          />
-                          <p className="image-name">{img.originalName}</p>
-                        </div>
-                      ))}
+                      {interest.images.map((img) => {
+                        console.log('🔍 Rendering image:', {
+                          id: img.id,
+                          url: img.imageUrl,
+                          originalName: img.originalName
+                        });
+                        return (
+                          <div key={img.id} className="image-item">
+                            <img
+                              src={img.imageUrl}
+                              alt={img.originalName || 'Store image'}
+                              className="store-image"
+                              onError={(e) => {
+                                console.error('❌ Image failed to load:', img.imageUrl);
+                                e.target.style.display = 'none';
+                              }}
+                              onLoad={() => {
+                                console.log('✅ Image loaded successfully:', img.imageUrl);
+                              }}
+                            />
+                            <p className="image-name">{img.originalName}</p>
+                          </div>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
