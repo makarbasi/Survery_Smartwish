@@ -112,12 +112,24 @@ npm run test
 
 ## Deployment
 
-### Backend
+### Render.com Deployment (Recommended)
+
+This application is configured for easy deployment on Render.com. See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete instructions.
+
+**Quick Steps:**
+1. Push your code to GitHub
+2. Connect your repository to Render.com
+3. Configure environment variables
+4. Deploy using the provided `render.yaml` configuration
+
+### Manual Deployment
+
+#### Backend
 1. Build the application: `npm run build`
 2. Set production environment variables
 3. Deploy to your preferred hosting platform
 
-### Frontend
+#### Frontend
 1. Build the application: `npm run build`
 2. Deploy the `dist` folder to your web server
 
