@@ -1,5 +1,14 @@
 // API configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3002';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3002';
+
+// Debug logging for environment variables
+console.log('🔧 API CONFIG DEBUG:', {
+  VITE_API_URL: import.meta.env.VITE_API_URL,
+  VITE_SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL,
+  VITE_SUPABASE_ANON_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY ? 'SET' : 'NOT SET',
+  API_BASE_URL,
+  timestamp: new Date().toISOString()
+});
 
 // Supabase configuration
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://lzeuerapdbrouxteluww.supabase.co';

@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { submitStoreInterest } from '../services/api';
 import '../styles/StoreInterest.css';
 
 const StoreInterest = () => {
+  const location = useLocation();
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('🚀 StoreInterest Component Mounted:', {
+      pathname: location.pathname,
+      component: 'StoreInterest',
+      timestamp: new Date().toISOString(),
+      environment: {
+        apiUrl: import.meta.env.VITE_API_URL,
+        supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
+        hasSupabaseKey: !!import.meta.env.VITE_SUPABASE_ANON_KEY
+      }
+    });
+    
+    return () => {
+      console.log('🔴 StoreInterest Component Unmounted');
+    };
+  }, [location.pathname]);
   const [form, setForm] = useState({
     storeName: '',
     storeAddress: '',

@@ -1,8 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './styles/App.css';
 
 function App() {
+  const location = useLocation();
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('🏠 App Component Mounted:', {
+      pathname: location.pathname,
+      component: 'App',
+      timestamp: new Date().toISOString()
+    });
+    
+    return () => {
+      console.log('🔴 App Component Unmounted');
+    };
+  }, [location.pathname]);
   return (
     <div className="app">
       <div className="container">
