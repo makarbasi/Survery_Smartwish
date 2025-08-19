@@ -140,9 +140,10 @@ Ensure your Supabase database has the required tables:
 
 ### Scaling
 
-- **Free tier**: Limited resources, good for development/testing
-- **Paid plans**: Available for production workloads
-- **Auto-scaling**: Configure based on traffic patterns
+- **Starter plan**: $7/month, good for development/testing
+- **Standard plan**: $25/month, suitable for production workloads
+- **Pro plan**: $50/month, high-performance applications
+- **Auto-scaling**: Available on paid plans
 
 ## Support
 
@@ -162,10 +163,11 @@ If you encounter issues:
 
 ## Cost Optimization
 
-- **Free tier limits**: 750 hours/month for web services
-- **Static sites**: Unlimited on free tier
+- **Starter plan**: $7/month per web service (includes 750 hours)
+- **Static sites**: $0/month (unlimited)
 - **Database**: Consider using Supabase free tier or Render's PostgreSQL
 - **Monitoring**: Use Render's built-in monitoring tools
+- **Free tier**: No longer available for web services
 
 ---
 
