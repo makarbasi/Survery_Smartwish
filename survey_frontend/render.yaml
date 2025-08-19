@@ -3,7 +3,7 @@ services:
     name: smartwish-survey-frontend
     env: static
     plan: hobby
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci && node ./node_modules/.bin/vite build
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
