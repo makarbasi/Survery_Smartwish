@@ -112,15 +112,33 @@ npm run test
 
 ## Deployment
 
-### Render.com Deployment (Recommended)
+### Render.com Deployment
 
-This application is configured for easy deployment on Render.com. See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete instructions.
+This application can be deployed on Render.com in two ways:
 
-**Quick Steps:**
+#### Option 1: Manual Deployment (Recommended)
+Follow the step-by-step manual deployment guide: [MANUAL_DEPLOYMENT.md](./MANUAL_DEPLOYMENT.md)
+
+**Advantages:**
+- More control over each service
+- Easier to troubleshoot
+- Better understanding of the deployment process
+- Can deploy services independently
+
+#### Option 2: Blueprint Deployment
+Use the automated Blueprint deployment: [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+**Advantages:**
+- Faster initial setup
+- Automated configuration
+- Single-click deployment
+
+**Quick Steps (Manual):**
 1. Push your code to GitHub
-2. Connect your repository to Render.com
-3. Configure environment variables
-4. Deploy using the provided `render.yaml` configuration
+2. Create Web Service for backend
+3. Create Static Site for frontend
+4. Configure environment variables
+5. Deploy and test
 
 ### Manual Deployment
 
