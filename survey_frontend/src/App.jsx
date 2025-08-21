@@ -39,8 +39,8 @@ function App() {
               <Link to="/interest" className="btn btn-primary">
                 📝 Express Interest
               </Link>
-              <Link to="/admin" className="btn btn-secondary">
-                📊 Admin Dashboard
+              <Link to="/admin/login" className="btn btn-secondary">
+                🔐 Admin Login
               </Link>
             </div>
 

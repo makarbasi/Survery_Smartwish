@@ -4,6 +4,8 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import App from './App.jsx';
 import StoreInterest from './pages/StoreInterest.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
+import AdminLogin from './pages/AdminLogin.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 import './styles/index.css';
 
@@ -39,11 +41,16 @@ root.render(
   <ErrorBoundary>
     <Router>
       <RouteDebugger />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/interest" element={<StoreInterest />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-      </Routes>
+                     <Routes>
+                 <Route path="/" element={<App />} />
+                 <Route path="/interest" element={<StoreInterest />} />
+                 <Route path="/admin" element={
+                   <ProtectedRoute>
+                     <AdminDashboard />
+                   </ProtectedRoute>
+                 } />
+                 <Route path="/admin/login" element={<AdminLogin />} />
+               </Routes>
     </Router>
   </ErrorBoundary>
 );

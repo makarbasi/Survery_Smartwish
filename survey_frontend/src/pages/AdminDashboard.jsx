@@ -45,6 +45,12 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('adminAuthenticated');
+    localStorage.removeItem('adminLoginTime');
+    window.location.href = '/';
+  };
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleString();
   };
@@ -78,6 +84,7 @@ const AdminDashboard = () => {
           <div className="header-actions">
             <Link to="/" className="btn btn-secondary">← Home</Link>
             <Link to="/interest" className="btn btn-primary">+ New Submission</Link>
+            <button onClick={handleLogout} className="btn btn-danger">🚪 Logout</button>
           </div>
         </div>
       </header>
