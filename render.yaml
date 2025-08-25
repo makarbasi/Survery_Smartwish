@@ -13,7 +13,7 @@ services:
       - key: PORT
         value: 10000
       - key: CORS_ORIGIN
-        value: https://smartwish-survey-frontend.onrender.com
+        value: https://smartwish-survey-frontend.onrender.com,https://survery-smartwish.onrender.com,https://survey.smartwish.us
       - key: DB_HOST
         sync: false
       - key: DB_PORT
